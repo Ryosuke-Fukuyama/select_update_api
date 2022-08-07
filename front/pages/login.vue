@@ -8,7 +8,7 @@
       <br>
       <button @click="login">submit</button>
       <br>
-      <router-link to="/singup">To Signup-Form</router-link>
+      <router-link to="/registration">To Signup-Form</router-link>
   </div>
 </template>
 
