@@ -2,12 +2,12 @@
   <div>
     <ul>
       <li v-for="property in propertyList" :key="property.id">
-        {{ property.content }}
+        {{ property.label.id }}
         <select v-model.lazy="selected" @change="contentUpdate(property.id, $event)">
-          <option disabled value="">{{ property.content }}</option>
-          <option value="content A">"content A"</option>
-          <option value="content B">"content B"</option>
-          <option value="content C">"content C"</option>
+          <option disabled value="">{{ property.label.status }}</option>
+          <option value="0">0</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
         </select>
         <div  v-if="modalFlag && missId==property.id">
           <Modal @close-click="closeModal"></Modal>
@@ -64,7 +64,7 @@ export default {
       const url = `/api/v1/properties/${id}`
       const res_data = await this.$axios.get(url)
       const patch_data = res_data.data.property
-      patch_data.content = null
+      patch_data.content = $event.target.value
       this.$axios.patch(url, patch_data, { uid: this.uid })
         .then(res => {
           this.fetchContents()
