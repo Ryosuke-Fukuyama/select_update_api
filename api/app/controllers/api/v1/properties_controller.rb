@@ -3,7 +3,7 @@ class Api::V1::PropertiesController < ApplicationController
   # after_action :set_csrf_token_header, only: [:show]
 
   def index
-    @properties = Property.all
+    @properties = Property.includes(:label)
   end
 
   def show
@@ -23,6 +23,10 @@ class Api::V1::PropertiesController < ApplicationController
   end
 
   def property_params
-    params.require(:property).permit(:content)
+    params.require(:property).permit(:content,
+                                      label: [
+                                        # :id,
+                                        :status,
+                                      ])
   end
 end
