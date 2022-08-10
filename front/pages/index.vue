@@ -64,8 +64,8 @@ export default {
       const url = `/api/v1/properties/${id}`
       const res_data = await this.$axios.get(url)
       const patch_data = res_data.data.property
-      patch_data.content = $event.target.value
-      this.$axios.patch(url, patch_data, { uid: this.uid })
+      patch_data.label.status = $event.target.value
+      this.$axios.patch(url, patch_data)
         .then(res => {
           this.fetchContents()
         })
