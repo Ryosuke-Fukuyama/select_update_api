@@ -10,7 +10,7 @@ class Api::V1::PropertiesController < ApplicationController
   end
 
   def update
-    if @property.update(content: property_params[:content])
+    if @property.label.update(status: label_params[:status])
       render file: "select-update-api/front/pages/index", json: 'succes!', status: 200
     else
       render file: "select-update-api/front/pages/index", json: @property, status: 500
@@ -23,10 +23,10 @@ class Api::V1::PropertiesController < ApplicationController
   end
 
   def property_params
-    params.require(:property).permit(:content,
-                                      label: [
-                                        # :id,
-                                        :status,
-                                      ])
+    params.require(:property).permit(:content)
+  end
+
+  def label_params
+    params.require(:label).permit(:status)
   end
 end

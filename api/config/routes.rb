@@ -5,9 +5,7 @@ Rails.application.routes.draw do
       namespace 'users' do
         resources :registrations, only: [:create]
       end
-      resources :properties, only: [:index, :show, :update] do
-        resources :labels, only: :update
-      end
+      resources :properties, only: [:index, :show, :update]
     end
   end
 end
